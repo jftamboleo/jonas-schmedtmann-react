@@ -1,8 +1,4 @@
-import { useQuestions } from '../QuestionsContext'
-
-export default function StartQuestions () {
-  const { numQuestions, startQuiz } = useQuestions()
-
+export default function StartQuestions ({ numQuestions, startQuiz }) {
   return (
     <div className='start'>
       <h2>The React Quiz</h2>

@@ -1,8 +1,4 @@
-import { useQuestions } from '../QuestionsContext'
-
-export default function NextButton () {
-  const { nextQuestion, answer, index, numQuestions, finishQuiz } = useQuestions()
-
+export default function NextButton ({ nextQuestion, answer, index, numQuestions, finishQuiz }) {
   const isLastQuestion = index === numQuestions - 1
   if (answer === null) return null
   return (

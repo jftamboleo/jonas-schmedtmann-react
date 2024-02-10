@@ -1,7 +1,4 @@
-import { useQuestions } from '../QuestionsContext'
-
-export default function Progress () {
-  const { points, maxPoints, index, numQuestions, answer } = useQuestions()
+export default function Progress ({ points, maxPoints, index, numQuestions, answer }) {
   return (
     <div className='progress'>
       <progress

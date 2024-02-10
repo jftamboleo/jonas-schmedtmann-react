@@ -1,8 +1,4 @@
-import { useQuestions } from '../QuestionsContext'
-
-export default function FinishScreen () {
-  const { points, maxPoints, highscore, restartQuiz } = useQuestions()
-
+export default function FinishScreen ({ points, maxPoints, highscore, restartQuiz }) {
   const pointsPercentage = Math.ceil((points / maxPoints) * 100)
   return (
     <>
@@ -11,9 +7,9 @@ export default function FinishScreen () {
           You got <strong>{points}</strong> points out of {maxPoints}! ({pointsPercentage}%)
         </p>
       </div>
-      <p className='highscore'>Highest score: {highscore} points</p>
+      <p className="highscore">Highest score: {highscore} points</p>
       <button
-        className='btn btn-ui'
+        className="btn btn-ui"
         onClick={restartQuiz}
       >
         Restart

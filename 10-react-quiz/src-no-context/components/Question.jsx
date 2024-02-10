@@ -1,7 +1,4 @@
-import { useQuestions } from '../QuestionsContext'
-
-export default function Question () {
-  const { question, newAnswer, answer } = useQuestions()
+export default function Question ({ question, newAnswer, answer }) {
   const hasAnswer = answer !== null
 
   const getAnswerStyle = (questionPosition) => {
@@ -18,7 +15,7 @@ export default function Question () {
     <>
       <h3>{question.question}</h3>
 
-      <div className='options'>
+      <div className="options">
         {question.options.map((option, index) => {
           return (
             <button

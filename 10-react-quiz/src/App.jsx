@@ -8,26 +8,10 @@ import NextButton from './components/NextButton.jsx'
 import Progress from './components/Progress.jsx'
 import FinishScreen from './components/FinishScreen.jsx'
 import Timer from './components/Timer.jsx'
-import { useQuestions } from './useQuestions.js'
+import { useQuestions } from './QuestionsContext.jsx'
 
 export default function App () {
-  const {
-    questions,
-    status,
-    index,
-    answer,
-    points,
-    maxPoints,
-    numQuestions,
-    highscore,
-    secondsRemaining,
-    startQuiz,
-    newAnswer,
-    nextQuestion,
-    finishQuiz,
-    restartQuiz,
-    tick
-  } = useQuestions()
+  const { status } = useQuestions()
 
   return (
     <div className='app'>
@@ -36,48 +20,21 @@ export default function App () {
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
         {status === 'ready' &&
-          <StartQuestions
-            numQuestions={numQuestions}
-            startQuiz={startQuiz}
-          />
+          <StartQuestions />
         }
         {status === 'active' &&
           <>
-            <Progress
-              points={points}
-              maxPoints={maxPoints}
-              numQuestions={numQuestions}
-              index={index}
-              answer={answer}
-            />
-            <Question
-              question={questions[index]}
-              newAnswer={newAnswer}
-              answer={answer}
-            />
+            <Progress />
+            <Question />
             <footer>
-              <Timer
-                secondsRemaining={secondsRemaining}
-                tick={tick}
-              />
-              <NextButton
-                nextQuestion={nextQuestion}
-                finishQuiz={finishQuiz}
-                index={index}
-                numQuestions={numQuestions}
-                answer={answer}
-              />
+              <Timer />
+              <NextButton />
             </footer>
           </>
         }
         {status === 'finished' &&
           <>
-            <FinishScreen
-              points={points}
-              maxPoints={maxPoints}
-              highscore={highscore}
-              restartQuiz={restartQuiz}
-            />
+            <FinishScreen />
           </>
         }
       </MainPage>
