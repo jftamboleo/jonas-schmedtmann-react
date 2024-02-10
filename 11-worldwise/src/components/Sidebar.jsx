@@ -1,12 +1,14 @@
 import Logo from '../components/Logo.jsx'
 import { AppNav } from './AppNav'
 import styles from './Sidebar.module.css'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Sidebar () {
   return (
     <div className={styles.sidebar}>
-      <Logo />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <AppNav />
 
       < Outlet />

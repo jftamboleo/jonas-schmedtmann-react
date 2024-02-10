@@ -24,7 +24,7 @@
 .position {
   font-weight: 700;
   position: absolute;
-  z-index: 1000;
+  z-index: 5000;
   font-size: 1.4rem;
   bottom: 4rem;
   left: 50%;
