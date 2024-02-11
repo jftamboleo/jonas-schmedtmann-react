@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useMemo } from 'react'
 import { createRandomPost } from './App'
 
 const PostContext = createContext()
@@ -27,15 +27,17 @@ export const PostProvider = ({ children }) => {
     setPosts([])
   }
 
+  const providerValue = useMemo(() => ({
+    posts: searchedPosts,
+    onClearPosts: handleClearPosts,
+    onAddPost: handleAddPost,
+    searchQuery,
+    setSearchQuery
+  }), [searchQuery, searchedPosts])
+
   return (
     <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onClearPosts: handleClearPosts,
-        onAddPost: handleAddPost,
-        searchQuery,
-        setSearchQuery
-      }}
+      value={providerValue}
     >
       {children}
     </PostContext.Provider>
