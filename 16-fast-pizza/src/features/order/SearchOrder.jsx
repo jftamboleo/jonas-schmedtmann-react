@@ -15,8 +15,13 @@ export default function SearchOrder () {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input id='query' name='query' placeholder='Search order #' />
-      <button className='ml-2 border border-stone-800 rounded-lg text-sm p-[0.15rem] px-2'>
+      <input
+        id='query'
+        name='query'
+        placeholder='Search order #'
+        className='rounded-full px-4 py-2 text-sm bg-yellow-100 placeholder:text-stone-400 w-28 sm:w-64 sm:focus:w-72 transition-all duration-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2'
+      />
+      <button className='ml-2 border border-stone-800 text-sm p-2 rounded-full'>
         <SearchIcon />
       </button>
     </form>

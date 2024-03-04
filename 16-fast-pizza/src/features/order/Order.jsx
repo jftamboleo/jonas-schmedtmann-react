@@ -7,6 +7,7 @@ import {
   formatCurrency,
   formatDate
 } from '../../utils/helpers'
+import OrderItem from './OrderItem'
 
 const templateOrder = {
   id: 'ABCDEF',
@@ -63,31 +64,35 @@ function Order () {
   const deliveryIn = calcMinutesLeft(estimatedDelivery)
 
   return (
-    <div>
-      <div>
-        <h2>Status</h2>
+    <main className='px-4 py-6 space-y-8'>
+      <div className='flex items-center justify-between gap-x-4 gap-y-2 flex-wrap'>
+        <h2 className='text-xl font-semibold'>Order #{id} status</h2>
 
-        <div>
-          {priority && <span>Priority</span>}
-          <span>{status} order</span>
+        <div className='space-x-4'>
+          {priority && <span className='px-3 py-1 bg-red-600 rounded-full text-sm font-semibold text-red-50 uppercase'>Priority</span>}
+          <span className='px-3 py-1 bg-green-600 rounded-full text-sm font-semibold text-green-50 uppercase'>{status} order</span>
         </div>
       </div>
 
-      <div>
-        <p>
+      <div className='flex items-center justify-between gap-x-4 flex-wrap bg-stone-200 px-6 py-5'>
+        <p className='font-medium'>
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
             : 'Order should have arrived'}
         </p>
-        <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
+        <p className='text-xs text-stone-700'>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
       </div>
 
-      <div>
+      <ul className='divide-y-2 divide-stone-200 border-y-2 border-stone-200'>
+        {cart.map(item => <OrderItem item={item} key={item.id} />)}
+      </ul>
+
+      <div className='space-y-2 bg-stone-200 text-stone-700 px-6 py-5'>
         <p>Price pizza: {formatCurrency(orderPrice)}</p>
         {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
-        <p>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
+        <p className='font-medium'>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
       </div>
-    </div>
+    </main>
   )
 }
 

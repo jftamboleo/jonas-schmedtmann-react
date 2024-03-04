@@ -10,10 +10,9 @@ export const loader = async () => {
 function Menu () {
   const menu = useLoaderData()
   return (
-    <>
-    <h1>Menu</h1>
-    {menu.map(pizza => <MenuItem key={pizza.id} pizza={pizza} />)}
-    </>
+    <ul className='divide-y-2'>
+      {menu.map(pizza => <MenuItem key={pizza.id} pizza={pizza} />)}
+    </ul>
   )
 }
 
