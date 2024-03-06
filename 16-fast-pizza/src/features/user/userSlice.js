@@ -2,7 +2,7 @@ import { getAddress } from '../../services/apiGeocoding'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  username: 'TEST_USERNAME'
+  username: 'TEST_USER'
 }
 
 const userSlice = createSlice({
@@ -15,11 +15,12 @@ const userSlice = createSlice({
   }
 })
 
+export const getUsername = (state) => state.user.username
+
 export const { updateName } = userSlice.actions
 export default userSlice.reducer
 
-// UTIL FUNCTIONS
-
+// UTILS
 function getPosition () {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject)

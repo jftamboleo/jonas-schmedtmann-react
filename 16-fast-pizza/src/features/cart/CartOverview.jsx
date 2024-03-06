@@ -1,20 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { formatCurrency } from '../../utils/helpers'
+import { getTotalOrderPrice, getTotalOrderQuantity } from './cartSlice'
 
 function CartOverview () {
-  const totalOrderQuantity = useSelector(state => {
-    return state.cart.cart.reduce((prev, curr) => {
-      return curr.quantity + prev
-    }, 0)
-  })
-
-  const totalOrderPrice = useSelector(state => {
-    return state.cart.cart.reduce((prev, curr) => {
-      return curr.totalPrice + prev
-    }, 0)
-  })
+  const totalOrderQuantity = useSelector(getTotalOrderQuantity)
+  const totalOrderPrice = useSelector(getTotalOrderPrice)
   const formattedOrderPrice = formatCurrency(totalOrderPrice)
+
+  if (!totalOrderQuantity) {
+    return null
+  }
 
   return (
     <div className='bg-stone-800 p-4 text-stone-200 uppercase px-4 py-4 sm:px-6 text-sm md:text-base flex items-center justify-between'>
